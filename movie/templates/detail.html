@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card mb-3">
+  <div class="row g-0">
+    <div class="card-body">
+      <h5 class="card-title">{{ movie.title }}</h5>
+      <p class="card-text">{{ movie.description }}</p>
+      <p class="card-text">
+        {% if movie.url %}
+        <a href="{{ movie.url }}" class="btn btn-primary">
+          电影资源链接
+        </a>
+        {% endif %}
+        {% if user.is_authenticated and user == review.user %}
+        <a class="btn btn-primary me-2" href="{% url 'updatemoviereview' review.id %}">修改</a>
+        <a class="btn btn-danger" href="{% url 'deletemoviereview' review.id %}">删除</a>>
+        <a href="{% url 'createmoviereview' movie.id %}" class="btn btn-primary">
+          发表评论</a>
+        {% endif %}
+      </p>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %}
